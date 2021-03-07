@@ -1,0 +1,31 @@
+{
+  "name": "atsea-tests",
+  "version": "1.0.0",
+  "description": "these are tests for the atsea sample app",
+  "main": "index.js",
+  "scripts": {
+    "test": "protractor dist/protractor/local.config.js",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crmejiam/atsea-sample-app-tests.git"
+  },
+  "keywords": [
+    "ui-testing",
+    "practice",
+    "protractor",
+    "api-testing",
+    "automation"
+  ],
+  "author": "[Maria Paulina Garcia Velasquez, Cristian Mejia Martinez] <mpgarciav@unal.edu.co, crmejiam@unal.edu.co> (@mpgarciav, @crmejiam)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/crmejiam/atsea-sample-app-tests/issues"
+  },
+  "homepage": "https://github.com/crmejiam/atsea-sample-app-tests#readme",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}
