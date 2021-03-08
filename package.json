@@ -4,7 +4,7 @@
   "description": "these are tests for the atsea sample app",
   "main": "index.js",
   "scripts": {
-    "test": "protractor dist/protractor/local.config.js",
+    "test": "npm run build",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc"
   },
@@ -26,6 +26,12 @@
   },
   "homepage": "https://github.com/crmejiam/atsea-sample-app-tests#readme",
   "dependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.1",
+    "@types/superagent": "^4.1.10",
+    "chai": "^4.3.3",
+    "mocha": "^8.3.1",
+    "superagent": "^6.1.0",
     "typescript": "^4.2.3"
   }
 }
