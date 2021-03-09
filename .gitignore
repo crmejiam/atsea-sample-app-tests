@@ -126,4 +126,7 @@ dist
 .history
 .ionide
 
+## Reports ##
+report
+
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
