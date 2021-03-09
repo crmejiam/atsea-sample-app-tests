@@ -1,6 +1,6 @@
-const agent = require('superagent');
-const statusCode = require('http-status-codes');
-const { expect } = require('chai');
+import { get } from 'superagent';
+import * as statusCode from 'http-status-codes';
+import { expect } from 'chai';
 
 const host = 'localhost:8080';
 
@@ -11,7 +11,7 @@ describe('Atsea System Utilities API tests', () => {
   const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${hour}`;
   describe('Checking the database health', () => {
     before(async () => {
-      response = await agent.get(`${host}/utility/healthcheck/`);
+      response = await get(`${host}/utility/healthcheck/`);
     });
     it('Then the database health should be checked', () => {
       expect(response.status).to.equal(statusCode.OK);

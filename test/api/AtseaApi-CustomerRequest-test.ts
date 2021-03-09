@@ -1,6 +1,6 @@
-const agent = require('superagent');
-const statusCode = require('http-status-codes');
-const { expect } = require('chai');
+import { get, post } from 'superagent';
+import * as statusCode from 'http-status-codes';
+import { expect } from 'chai';
 
 const host = 'localhost:8080';
 
@@ -21,7 +21,7 @@ describe('Atsea Customer Request API Test', () => {
   let customerId;
   describe('Creating a customer user', () => {
     before(async () => {
-      response = await agent.post(`${host}/api/customer/`)
+      response = await post(`${host}/api/customer/`)
         .send(register);
       customerId = response.body.customerId;
     });
@@ -31,7 +31,7 @@ describe('Atsea Customer Request API Test', () => {
   });
   describe('Getting a customer', () => {
     before(async () => {
-      response = await agent.get(`${host}/api/customer/${customerId}`);
+      response = await get(`${host}/api/customer/${customerId}`);
     });
 
     const userData = {

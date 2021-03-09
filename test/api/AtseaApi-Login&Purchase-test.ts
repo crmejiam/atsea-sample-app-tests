@@ -1,6 +1,6 @@
-const agent = require('superagent');
-const statusCode = require('http-status-codes');
-const { expect } = require('chai');
+import { get, post, del } from 'superagent';
+import * as statusCode from 'http-status-codes';
+import { expect } from 'chai';
 
 const host = 'localhost:8080';
 
@@ -13,7 +13,7 @@ describe('Atsea Login and Purchase API tests', () => {
   let response;
   describe('Logging in with an existing user', () => {
     before(async () => {
-      response = await agent.post(`${host}/login/`)
+      response = await post(`${host}/login/`)
         .send(credentials);
     });
     it('Then the user should be logged in', () => {
@@ -22,7 +22,7 @@ describe('Atsea Login and Purchase API tests', () => {
   });
   describe('Purchasing an item', () => {
     before(async () => {
-      response = await agent.get(`${host}/purchase/`);
+      response = await get(`${host}/purchase/`);
     });
     it('Then the purchase should be made', () => {
       expect(response.state).to.equal(statusCode.OK);
@@ -31,10 +31,10 @@ describe('Atsea Login and Purchase API tests', () => {
   });
   describe('Deleting a user', () => {
     before(async () => {
-      response = await agent.delete(`${host}/api/customer/0`);
+      response = await del(`${host}/api/customer/0`);
     });
     it('Then an user should be deleted', () => {
-      expect(response.status).to.equal(statusCode.NOCONTENT);
+      expect(response.status).to.equal(statusCode.NO_CONTENT);
     });
   });
 });

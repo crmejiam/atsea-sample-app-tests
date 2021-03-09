@@ -1,6 +1,6 @@
-const agent = require('superagent');
-const statusCode = require('http-status-codes');
-const { expect } = require('chai');
+import { get } from 'superagent';
+import * as statusCode from 'http-status-codes';
+import { expect } from 'chai';
 
 const host = 'localhost:8080';
 
@@ -9,7 +9,7 @@ describe('Atsea Product Request API test', () => {
   let product;
   describe('Get all products of atsea shop', () => {
     before(async () => {
-      response = await agent.get(`${host}/api/product/`);
+      response = await get(`${host}/api/product/`);
     });
     it('Then all products should be listed', () => {
       expect(response.status).to.equal(statusCode.OK);
@@ -18,7 +18,7 @@ describe('Atsea Product Request API test', () => {
   });
   describe('Get one single product of atsea shop', () => {
     before(async () => {
-      response = await agent.get(`${host}/api/product/3`);
+      response = await get(`${host}/api/product/3`);
       product = response.body;
     });
     it('Then product 3 should be obtained', () => {

@@ -1,6 +1,6 @@
-const agent = require('superagent');
-const statusCode = require('http-status-codes');
-const { expect } = require('chai');
+import { get, post, del } from 'superagent';
+import * as statusCode from 'http-status-codes';
+import { expect } from 'chai';
 
 const host = 'localhost:8080';
 
@@ -16,7 +16,7 @@ describe('Atsea Order Request API Test', () => {
   let response;
   describe('Creating an order', () => {
     before(async () => {
-      response = await agent.post(`${host}/api/order/`)
+      response = await post(`${host}/api/order/`)
         .send(order);
       orderId = response.body.orderId;
     });
@@ -26,7 +26,7 @@ describe('Atsea Order Request API Test', () => {
   });
   describe('Getting an order from the orderId', () => {
     before(async () => {
-      response = await agent.get(`${host}/api/order/${orderId}`);
+      response = await get(`${host}/api/order/${orderId}`);
     });
     it('Then an order should be obtained', () => {
       expect(response.status).to.equal(statusCode.OK);
@@ -35,10 +35,10 @@ describe('Atsea Order Request API Test', () => {
   });
   describe('Deleting an order', () => {
     before(async () => {
-      response = await agent.delete(`${host}/api/order/${orderId}`);
+      response = await del(`${host}/api/order/${orderId}`);
     });
     it('Then an order should be deleted', () => {
-      expect(response.status).to.equal(statusCode.NOCONTENT);
+      expect(response.status).to.equal(statusCode.NO_CONTENT);
     });
   });
 });
