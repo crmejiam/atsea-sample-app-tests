@@ -1,5 +1,5 @@
 import { get } from 'superagent';
-import * as statusCode from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 import { expect } from 'chai';
 
 const host = 'localhost:8080';
@@ -12,7 +12,7 @@ describe('Atsea Product Request API test', () => {
       response = await get(`${host}/api/product/`);
     });
     it('Then all products should be listed', () => {
-      expect(response.status).to.equal(statusCode.OK);
+      expect(response.status).to.equal(StatusCodes.OK);
       expect(response.body.length).to.equal(9);
     });
   });

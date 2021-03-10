@@ -127,6 +127,6 @@ dist
 .ionide
 
 ## Reports ##
-report
+mochawesome-report
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
