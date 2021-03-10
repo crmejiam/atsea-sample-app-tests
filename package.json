@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm run build",
-    "test:api": "npm run lint && npm run build && mocha -t 5000 --reporter mochawesome --recursive ./test/api/*.ts",
+    "test:api": "npm run lint && npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/*.js",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc",
     "lint": "eslint ./test/**/*.ts"
