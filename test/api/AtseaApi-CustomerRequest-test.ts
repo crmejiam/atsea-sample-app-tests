@@ -18,11 +18,6 @@ const register = {
   role: 'USER'
 };
 
-const credentials = {
-  username: 'gordonf',
-  password: 'gordonpassword'
-};
-
 describe('Atsea Customer Request API Test', () => {
   describe('Creating a customer user', () => {
     before(async () => {
@@ -50,25 +45,12 @@ describe('Atsea Customer Request API Test', () => {
     });
   });
 
-  describe('Atsea Login and Purchase API tests', () => {
-    describe('Logging in with an existing user', () => {
-      before(async () => {
-        response = await post(`${host}/login/`)
-          .set('User-Agent', 'agent')
-          .set('Content-Type', 'application/json')
-          .send(credentials);
-      });
-      it('Then the user should be logged in', () => {
-        expect(response.state).to.equal(StatusCodes.OK);
-      });
+  describe('Deleting a user', () => {
+    before(async () => {
+      response = await del(`${host}/api/customer/${customerId}`);
     });
-    describe('Deleting a user', () => {
-      before(async () => {
-        response = await del(`${host}/api/customer/${customerId}`);
-      });
-      it('Then an user should be deleted', () => {
-        expect(response.status).to.equal(StatusCodes.NO_CONTENT);
-      });
+    it('Then an user should be deleted', () => {
+      expect(response.status).to.equal(StatusCodes.NO_CONTENT);
     });
   });
 });
