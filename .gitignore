@@ -128,5 +128,6 @@ dist
 
 ## Reports ##
 mochawesome-report
+mochawesome-reports
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
