@@ -39,7 +39,9 @@ describe('Atsea Order Request API Test', () => {
     });
     it('Then an order should be obtained', () => {
       expect(response.status).to.equal(StatusCodes.OK);
-      expect(response.body).to.equal(order);
+      expect(response.body.orderId).to.equal(order.orderId);
+      expect(response.body.customerId).to.equal(order.customerId);
+      expect(response.body).to.have.deep.property('productsOrdered', order.productsOrdered);
     });
   });
   describe('Deleting an order', () => {
