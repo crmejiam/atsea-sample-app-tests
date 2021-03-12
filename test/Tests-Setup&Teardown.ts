@@ -24,11 +24,12 @@ export function customerSetup() {
       customerId = response.body.customerId;
     });
   });
-  return customerId;
+  register.customerId = customerId;
+  return register;
 };
 
 export function customerTeardown() {
-  const customerId = customerSetup();
+  const customerId = customerSetup().customerId;
   describe('Customer Teardown', () => {
     before(async () => {
       await del(`localhost:8080/api/customer/${customerId}`);

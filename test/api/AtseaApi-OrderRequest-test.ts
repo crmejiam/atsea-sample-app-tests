@@ -12,7 +12,7 @@ const currentDate = `${today.getFullYear()}-${month}-${today.getDate()}`;
 const order = {
   orderId: 0,
   orderDate: currentDate,
-  customerId: customerSetup(),
+  customerId: customerSetup().customerId,
   productsOrdered: { 1: 1, 2: 2, 3: 3 }
 };
 
