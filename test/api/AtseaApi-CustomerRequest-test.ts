@@ -37,7 +37,7 @@ describe('Atsea Customer Request API Test', () => {
         .set('User-Agent', 'agent');
     });
 
-    it('Then an user should be obtained', () => {
+    it('Then a customer should be obtained', () => {
       expect(response.status).to.equal(StatusCodes.OK);
       expect(response.body.email).to.equal('gfreeman@gmail.com');
       expect(response.body.username).to.equal('gordonf');
@@ -45,11 +45,11 @@ describe('Atsea Customer Request API Test', () => {
     });
   });
 
-  describe('Deleting a user', () => {
+  describe('Deleting a customer', () => {
     before(async () => {
       response = await del(`${host}/api/customer/${customerId}`);
     });
-    it('Then an user should be deleted', () => {
+    it('Then an customer should be deleted', () => {
       expect(response.status).to.equal(StatusCodes.NO_CONTENT);
     });
   });

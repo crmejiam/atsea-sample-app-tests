@@ -1,6 +1,7 @@
 import { get, post, del } from 'superagent';
 import { StatusCodes } from 'http-status-codes';
 import { expect } from 'chai';
+import { customerSetup, customerTeardown } from '../Tests-Setup&Teardown';
 
 const host = 'localhost:8080';
 const today = new Date();
@@ -11,7 +12,7 @@ const currentDate = `${today.getFullYear()}-${month}-${today.getDate()}`;
 const order = {
   orderId: 0,
   orderDate: currentDate,
-  customerId: 0,
+  customerId: customerSetup(),
   productsOrdered: { 1: 1, 2: 2, 3: 3 }
 };
 
@@ -52,4 +53,5 @@ describe('Atsea Order Request API Test', () => {
       expect(response.status).to.equal(StatusCodes.NO_CONTENT);
     });
   });
+  customerTeardown();
 });
