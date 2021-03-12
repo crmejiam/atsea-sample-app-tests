@@ -1,4 +1,4 @@
-import { Config } from 'protractor';
+import { browser, Config } from 'protractor';
 
 export const config: Config = {
   framework: 'mocha',
@@ -9,4 +9,8 @@ export const config: Config = {
   mochaOpts: {
 	  reporter: 'mochawesome-screenshots'  
   },
+  getPageTimeout:30000,
+  onPrepare: () => {
+    browser.ignoreSynchronization = true;
+  }
 };
