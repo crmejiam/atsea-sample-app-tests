@@ -10,8 +10,8 @@ export function customerSetup() {
     address: 'Black Mesa Research Facility',
     email: 'gfreeman@gmail.com',
     phone: '513 222 5555',
-    username: 'gordonf',
-    password: 'gordonpassword',
+    username: 'g',
+    password: 'p',
     enabled: 'true',
     role: 'USER'
   };
