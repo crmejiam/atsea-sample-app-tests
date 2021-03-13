@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { StatusCodes } from 'http-status-codes';
 
 export function customerSetup() {
-  const host = 'http://192.168.10.16:8080';
+  // Para que funcione es necesario poner tu IP privada en el host, ademaś de activar el selenium grid
+  const host = 'http://192.168.1.26:8080';    // Cristian's IP
   let response;
   let customerId;
   let register = {
@@ -11,9 +12,9 @@ export function customerSetup() {
     name: 'Gordon Freeman',
     address: 'Black Mesa Research Facility',
     email: 'gfreeman@gmail.com',
-    phone: (Math.floor(Math.random()*(9999999999-1000000000))+1000000000).toString(),
-    username: 'g',
-    password: 'p',
+    phone: '535 333 5555',
+    username: Math.random().toString(36).substring(7).charAt(0),
+    password: Math.random().toString(36).substring(7).charAt(0),
     enabled: 'true',
     role: 'USER'
   };
