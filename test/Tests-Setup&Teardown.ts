@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { StatusCodes } from 'http-status-codes';
 
 export function customerSetup() {
-  const host = 'localhost:8080';
+  const host = 'http://192.168.10.16:8080';
   let response;
   let customerId;
   let register = {
