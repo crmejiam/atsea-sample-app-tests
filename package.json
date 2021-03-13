@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "these are tests for the atsea sample app",
   "main": "index.js",
-  "scripts": {
-    "test": "npm run build",
+  "scripts": {   
+    "test": "npm run build",    
+    "test:ui": "npm run build && protractor dist/protractor/local.config.js &&  mocha -t 5000 --reporter mochawesome --recursive ./dist/ui/*.js",    
     "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/api/*.js",
+
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc"
   },
@@ -30,12 +32,16 @@
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.1",
     "@types/superagent": "^4.1.10",
-    "mochawesome": "^6.2.2"
+    "mochawesome-screenshots": "^1.7.3"
   },
   "devDependencies": {
+    "@types/jasminewd2": "^2.0.8",
+    "@types/node": "^14.14.33",
     "chai": "^4.3.3",
     "http-status-codes": "^2.1.4",
     "mocha": "^8.3.1",
+    "mochawesome": "^6.2.2",
+    "protractor": "^7.0.0",
     "superagent": "^6.1.0",
     "superagent-promise": "^1.1.0",
     "typescript": "^4.2.3"
