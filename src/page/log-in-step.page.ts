@@ -10,7 +10,7 @@ export class LogInStepPage {
     this.login = $('.buttonSection > div > button:nth-child(2)');
     this.user = $('.loginFormRow > div:nth-child(1) > div > input');
     this.pass = $('.loginFormRow > div:nth-child(2) > div > input');
-    this.signIn = $('html body.ReactModal__Body--open div.ReactModalPortal div.ReactModal__Overlay.ReactModal__Overlay--after-open div.ReactModal__Content.ReactModal__Content--after-open div.formContainer div.loginFormContent form div.loginFormButton button div span');
+    this.signIn = $('.loginFormButton > button:nth-child(1)');
   }
   public async goToLogin(){
     browser.sleep(5000);
@@ -27,6 +27,6 @@ export class LogInStepPage {
   public async singin(){
     browser.sleep(5000);
     await this.signIn.click();
-    browser.sleep(5000);
+    browser.sleep(50000);
   }
 }
