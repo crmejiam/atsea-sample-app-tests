@@ -5,19 +5,19 @@ import * as chai from 'chai';
 // import { StatusCodes } from 'http-status-codes';
 import { customerSetup, customerTeardown} from '../Tests-Setup&Teardown';
 import  { LogInStepPage,
-          AddItemStepPage } from '../../src/page';
+          AddItemStepPage,
+          PaymentStepPage } from '../../src/page';
 
 let customer = customerSetup();
 const expect = chai.expect;
-const host = 'localhost:8080'
 
 describe('When buying a thing', () => {
 
   describe('When entering the website', () => {
 
     before(async () => {
-      await browser.get(`http://${host}`);          
-    });    
+      await browser.get(`http://181.58.38.0:8080`);          
+    });        
 
     it('then should have a title', async () => {
       const title = await browser.getTitle();
@@ -44,9 +44,24 @@ describe('When buying a thing', () => {
     it('then an item should be added', async () => {
       await addItemStepPage.addElement();
     });
-
   });
-  
-  
+
+  describe('Making a payment', () =>{
+    const paymentStepPage: PaymentStepPage = new PaymentStepPage();
+    it('then it should go to cart', async () => {
+      await paymentStepPage.goToCart();
+    });
+    it('then it should fill the credit card information', async () => {
+      await paymentStepPage.fillBillingInfo('Perficient', 'Developer', 'Somewhere', 'Medellin');
+    });
+    it('then it should fill the billing information', async () => {
+      await paymentStepPage.fillCreditInfo('Jhon', 'Smith', '123456', '123', '1/2/2003');
+    });
+    it('then it should complete the order', async () => {
+      const final = await paymentStepPage.completeOrder();
+      expect(final).to.equal('You have successfully placed an order!');
+    });
+
+  });  
 });
 customerTeardown();

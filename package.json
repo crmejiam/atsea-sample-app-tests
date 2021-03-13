@@ -8,7 +8,7 @@
     "test:ui": "npm run build && protractor dist/protractor/local.config.js &&  mocha -t 5000 --reporter mochawesome --recursive ./dist/*.js",    
     "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/**/*.js",
 
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist && rm -rf mochawesome-reports",
     "build": "npm run clean && tsc"
   },
   "repository": {
