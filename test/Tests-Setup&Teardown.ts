@@ -11,7 +11,7 @@ export function customerSetup() {
     name: 'Gordon Freeman',
     address: 'Black Mesa Research Facility',
     email: 'gfreeman@gmail.com',
-    phone: '513 222 5555',
+    phone: (Math.floor(Math.random()*(9999999999-1000000000))+1000000000).toString(),
     username: 'g',
     password: 'p',
     enabled: 'true',
