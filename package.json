@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "these are tests for the atsea sample app",
   "main": "index.js",
-  "scripts": {   
-    "test": "npm run build",    
-    "test:ui": "npm run build && protractor dist/protractor/local.config.js &&  mocha -t 5000 --reporter mochawesome --recursive ./dist/*.js",    
-    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/**/*.js",
 
+  "scripts": {
+    "test": "npm run build",
+    "test:ui": "npm run build && protractor dist/protractor/local.config.js &&  mocha -t 5000 --reporter mochawesome --recursive ./dist/test/ui/*.js",
+    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/test/api/*.js",
     "clean": "rm -rf dist && rm -rf mochawesome-reports",
     "build": "npm run clean && tsc"
   },
