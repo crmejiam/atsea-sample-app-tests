@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run build",
-    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/**/*.js",
+    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./dist/api/*.js",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc"
   },

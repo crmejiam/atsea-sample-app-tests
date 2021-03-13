@@ -9,7 +9,7 @@ today.setTime(today.getTime() + 300 * 60 * 1000);
 const month = (today.getMonth() + 1).toString().padStart(2, '0');
 const currentDate = `${today.getFullYear()}-${month}-${today.getDate()}`;
 
-const order = {
+let order = {
   orderId: 0,
   orderDate: currentDate,
   customerId: customerSetup().customerId,

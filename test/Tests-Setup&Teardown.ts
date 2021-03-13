@@ -1,10 +1,12 @@
 import { post, del } from 'superagent';
+import { expect } from 'chai';
+import { StatusCodes } from 'http-status-codes';
 
 export function customerSetup() {
   const host = 'localhost:8080';
   let response;
   let customerId;
-  const register = {
+  let register = {
     customerId: 0,
     name: 'Gordon Freeman',
     address: 'Black Mesa Research Facility',
@@ -15,7 +17,7 @@ export function customerSetup() {
     enabled: 'true',
     role: 'USER'
   };
-  describe('Customer Setup', () => {
+  describe('Setup Customer', () => {
     before(async () => {
       response = await post(`${host}/api/customer/`)
         .set('User-Agent', 'agent')
@@ -23,16 +25,25 @@ export function customerSetup() {
         .send(register);
       customerId = response.body.customerId;
     });
+    it('Customer created successfully', () => {
+      expect(response.status).to.equal(StatusCodes.CREATED);
+    });
   });
   register.customerId = customerId;
   return register;
 };
 
 export function customerTeardown() {
-  const customerId = customerSetup().customerId;
-  describe('Customer Teardown', () => {
+  let response;
+  
+  describe('Tearing down the Customes', () => {
     before(async () => {
-      await del(`localhost:8080/api/customer/${customerId}`);
+      response = await del(`localhost:8080/api/customer/`)
+      .set('User-Agent', 'agent')
     });
-  });  
+    it('Then all customers sould be deleted', () => {
+      expect(response.status).to.equal(StatusCodes.NO_CONTENT);
+    });
+  });
+
 };
