@@ -19,17 +19,16 @@ const multiCapabilities = [chromeConfig, firefoxConfig];
 export const config: Config = {
   multiCapabilities,
   framework: 'mocha',
-  specs: ['../test/ui/**/*.js'],
+  specs: [ '../test/ui/*js' ],
   seleniumAddress: 'http://0.0.0.0:4444',
-  // seleniumAddress: 'http://localhost:4444/wd/hub',
-  SELENIUM_PROMISE_MANAGER : false,
+  SELENIUM_PROMISE_MANAGER: false,
   mochaOpts: {
+    timeout: 18000,
+	  reporter: 'mochawesome-screenshots',
     reporterOptions: {
       reportName: "report",
       multiReport: true,
-    },
-	  reporter: 'mochawesome-screenshots', 
-    timeout: 20000,
+    }
   },
   getPageTimeout:30000,
   onPrepare: () => {
