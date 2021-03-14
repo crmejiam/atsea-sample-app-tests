@@ -59,6 +59,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
     - run: npm ci
+    - name: Starting Selenium grid
+      run: docker-compose up -d
     - name: Running UI tests
       run: npm run test:ui
     - name: Upload reports to AWS bucket
