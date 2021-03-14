@@ -16,7 +16,7 @@ describe('When buying a thing', () => {
   describe('When entering the website', () => {
 
     beforeEach(async () => {
-      await browser.get(`http://192.168.10.16:8080`);  
+      await browser.get(`http://3.142.215.210:8080`);  
       await browser.sleep(3000);        
     });        
 

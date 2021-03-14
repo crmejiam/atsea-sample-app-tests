@@ -2,11 +2,12 @@ import { post, del } from 'superagent';
 import { expect } from 'chai';
 import { StatusCodes } from 'http-status-codes';
 import { browser } from 'protractor';
-
+const host = 'http://3.142.215.210:8080'    //AWS IP
 export function customerSetup() {
   // Para que funcione es necesario poner tu IP privada en el host, ademaś de activar el selenium grid
   // const host = 'http://192.168.1.26:8080';    // Cristian's IP
-  const host = 'http://192.168.10.16:8080';   //Paulina's IP
+  // const host = 'http://192.168.10.16:8080';   //Paulina's IP
+  
   let response;
   let customerIf;
   let register = {
@@ -41,7 +42,7 @@ export function customerTeardown() {
   
   describe('Tearing down the Customes', () => {
     before(async () => {
-      response = await del(`localhost:8080/api/customer/`)
+      response = await del(`${host}/customer/`)
       .set('User-Agent', 'agent')
     });
     it('Then all customers sould be deleted', () => {
