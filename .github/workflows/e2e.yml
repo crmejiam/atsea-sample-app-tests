@@ -1,0 +1,66 @@
+on:
+  schedule:
+  - cron : 0 0 * * *
+	repository_dispatch:
+    types: [deployed]
+  workflow_dispatch:
+jobs:
+  api:
+    name: API tests
+
+    runs-on: ubuntu-latest
+
+    env:
+      DEFAULT_BRANCH: master
+      NODE_VERSION: 14.x
+      AWS_REGION: us-east-1
+
+    steps:
+    - name: Checkout to branch ${{ env.DEFAULT_BRANCH }}
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    - run: npm ci
+    - name: Running API tests
+      run: npm run test:api
+    - name: Upload reports to AWS bucket
+      run: aws s3 sync ./mochawesome-report ${{ secrets.AWS_BUCKET }}/api-tests-report
+      if: ${{ always() }}
+
+  ui:
+    name: UI tests
+
+    runs-on: ubuntu-latest
+
+    env:
+      DEFAULT_BRANCH: master
+      NODE_VERSION: 14.x
+      AWS_REGION: us-east-1
+
+    steps:
+    - name: Checkout to branch ${{ env.DEFAULT_BRANCH }}
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    - run: npm ci
+    - name: Running UI tests
+      run: npm run test:ui
+    - name: Upload reports to AWS bucket
+      run: aws s3 sync ./mochawesome-report ${{ secrets.AWS_BUCKET }}/ui-tests-report
+      if: ${{ always() }}
