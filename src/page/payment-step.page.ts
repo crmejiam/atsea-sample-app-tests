@@ -1,4 +1,6 @@
 import { $, ElementFinder, browser } from 'protractor';
+import * as chai from 'chai';
+var expect = chai.expect;
 
 export class PaymentStepPage {
   private cart :ElementFinder;
@@ -74,7 +76,9 @@ export class PaymentStepPage {
     browser.sleep(5000);
     await this.complete.click();
     browser.sleep(5000);
-    await this.message.getText()
+    const msg = await this.message.getText();
+    browser.sleep(5000);
+    expect(msg).to.equal('You have successfully placed an order!');
     browser.sleep(5000);
   }
 }

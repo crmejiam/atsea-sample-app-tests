@@ -3,7 +3,8 @@ import { browser } from 'protractor';
 // import { post } from 'superagent';
 import * as chai from 'chai';
 // import { StatusCodes } from 'http-status-codes';
-import { customerSetup, customerTeardown} from '../Tests-Setup&Teardown';
+import { customerSetup } from '../Tests-Setup&Teardown';
+// import { customerTeardown} from '../Tests-Setup&Teardown';
 import  { LogInStepPage,
           AddItemStepPage,
           PaymentStepPage } from '../../src/page';
@@ -67,4 +68,4 @@ describe('When buying a thing', () => {
 
   });  
 });
-customerTeardown();
+// ustomerTeardown();
