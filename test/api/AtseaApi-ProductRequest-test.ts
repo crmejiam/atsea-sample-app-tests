@@ -2,7 +2,7 @@ import { get } from 'superagent';
 import { StatusCodes } from 'http-status-codes';
 import { expect } from 'chai';
 
-const host = 'localhost:8080';
+const host = `http://3.142.215.210:8080`;
 
 describe('Atsea Product Request API test', () => {
   let response;

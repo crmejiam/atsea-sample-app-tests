@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { expect } from 'chai';
 import { customerSetup, customerTeardown } from '../Tests-Setup&Teardown';
 
-const host = 'localhost:8080';
+const host = `http://3.142.215.210:8080`;
 const today = new Date();
 today.setTime(today.getTime() + 300 * 60 * 1000);
 const month = (today.getMonth() + 1).toString().padStart(2, '0');
