@@ -1,11 +1,8 @@
 import { browser } from 'protractor';
 import * as chai from 'chai';
-import { customerSetup } from '../Tests-Setup&Teardown';
-import  { LogInStepPage,
-          AddItemStepPage,
+import  { AddItemStepPage,
           PaymentStepPage } from '../../src/page';
 
-let customer = customerSetup();
 const expect = chai.expect;
 
 describe('When buying a thing', () => {
@@ -24,20 +21,6 @@ describe('When buying a thing', () => {
     });
   }); 
 
-  describe('Login', () => {
-    const logInStepPage: LogInStepPage = new LogInStepPage();
-    it('then should go to the login page', async () => {
-      await logInStepPage.goToLogin();
-    });
-    it('then credentials should be filled', async () => {
-      await logInStepPage.fillForm(customer.username, customer.password);
-    });
-    it('then a user should be logged in', async () => {
-      await logInStepPage.singin();
-    });
-
-  });
-
   describe('Adding an item', () =>{
     const addItemStepPage: AddItemStepPage = new AddItemStepPage();
     it('then an item should be added', async () => {
@@ -45,7 +28,7 @@ describe('When buying a thing', () => {
     });
   });
 
-  describe('Making a payment', () =>{
+  describe('Making a payment without logging in', () =>{
     const paymentStepPage: PaymentStepPage = new PaymentStepPage();
     it('then it should go to cart', async () => {
       await paymentStepPage.goToCart();
@@ -57,10 +40,9 @@ describe('When buying a thing', () => {
     it('then it should fill the billing card information', async () => {
       // await paymentStepPage.fillBillingInfo('Perficient', 'Developer', 'Somewhere', 'Medellin');
     });    
-    it('then it should complete the order', async () => {
-      await paymentStepPage.completeOrder();
+    it('then it should fail to complete the order', async () => {
+      await paymentStepPage.noLogIn();
     });
 
   });  
 });
-

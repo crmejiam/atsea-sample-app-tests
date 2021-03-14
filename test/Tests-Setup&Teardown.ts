@@ -8,7 +8,7 @@ export function customerSetup() {
   // const host = 'http://192.168.1.26:8080';    // Cristian's IP
   const host = 'http://192.168.10.16:8080';   //Paulina's IP
   let response;
-  let customerId;
+  let customerIf;
   let register = {
     customerId: 0,
     name: 'Gordon Freeman',
@@ -26,13 +26,13 @@ export function customerSetup() {
         .set('User-Agent', 'agent')
         .set('Content-Type', 'application/json')
         .send(register);
-      customerId = response.body.customerId;
+      customerIf = response.body.customerIf;
     });
     it('Customer created successfully', () => {
       expect(response.status).to.equal(StatusCodes.CREATED);
     });
   });
-  register.customerId = customerId;
+  register.customerId = customerIf;
   return register;
 };
 

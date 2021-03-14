@@ -1,4 +1,4 @@
-import { $, ElementFinder, browser } from 'protractor';
+import { $, ElementFinder, browser, ExpectedConditions } from 'protractor';
 import * as chai from 'chai';
 var expect = chai.expect;
 
@@ -15,6 +15,7 @@ export class PaymentStepPage {
   private city: ElementFinder;
   private complete: ElementFinder;
   private message: ElementFinder;
+  private cartloginError: ElementFinder;
 
   constructor() {
     this.cart = $('.checkout-button > a:nth-child(1)'); 
@@ -29,9 +30,11 @@ export class PaymentStepPage {
     this.city = $('.infoSection > form:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > input');
     this.complete = $('.infoButton > button:nth-child(2)');
     this.message = $('.successMessage');
+    this.cartloginError = $('.loginErrorMessage');
   }
   public async goToCart(){
     browser.sleep(5000);
+    await browser.wait(ExpectedConditions.elementToBeClickable(this.cart), 5000);
     await this.cart.click();
   }
   /*
@@ -79,6 +82,24 @@ export class PaymentStepPage {
     const msg = await this.message.getText();
     browser.sleep(5000);
     expect(msg).to.equal('You have successfully placed an order!');
+    browser.sleep(5000);
+  }
+  public async noThing(){
+    browser.sleep(5000);
+    await this.complete.click();
+    browser.sleep(5000);
+    await browser.wait(ExpectedConditions.presenceOf(this.cartloginError), 5000);
+    const msg = await this.cartloginError.getText();
+    expect(msg).to.equal('Please add to cart first...');
+    browser.sleep(5000);
+  }  
+  public async noLogIn(){
+    browser.sleep(5000);
+    await this.complete.click();
+    browser.sleep(5000);    
+    await browser.wait(ExpectedConditions.presenceOf(this.cartloginError), 50000);
+    const msg = await this.cartloginError.getText();
+    expect(msg).to.equal('Please login before completing order...');
     browser.sleep(5000);
   }
 }

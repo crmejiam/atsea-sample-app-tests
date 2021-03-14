@@ -1,8 +1,11 @@
+// import { doesNotMatch } from 'node:assert';
 import { browser } from 'protractor';
+// import { post } from 'superagent';
 import * as chai from 'chai';
+// import { StatusCodes } from 'http-status-codes';
 import { customerSetup } from '../Tests-Setup&Teardown';
+import { customerTeardown} from '../Tests-Setup&Teardown';
 import  { LogInStepPage,
-          AddItemStepPage,
           PaymentStepPage } from '../../src/page';
 
 let customer = customerSetup();
@@ -36,16 +39,9 @@ describe('When buying a thing', () => {
       await logInStepPage.singin();
     });
 
-  });
+  });  
 
-  describe('Adding an item', () =>{
-    const addItemStepPage: AddItemStepPage = new AddItemStepPage();
-    it('then an item should be added', async () => {
-      await addItemStepPage.addElement();
-    });
-  });
-
-  describe('Making a payment', () =>{
+  describe('Making a payment without an item in the cart', () =>{
     const paymentStepPage: PaymentStepPage = new PaymentStepPage();
     it('then it should go to cart', async () => {
       await paymentStepPage.goToCart();
@@ -57,10 +53,10 @@ describe('When buying a thing', () => {
     it('then it should fill the billing card information', async () => {
       // await paymentStepPage.fillBillingInfo('Perficient', 'Developer', 'Somewhere', 'Medellin');
     });    
-    it('then it should complete the order', async () => {
-      await paymentStepPage.completeOrder();
+    it('then it should fail to complete the order', async () => {
+      await paymentStepPage.noThing()      
     });
 
   });  
 });
-
+customerTeardown();
