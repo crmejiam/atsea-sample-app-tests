@@ -1,7 +1,6 @@
 import { post, del } from 'superagent';
 import { expect } from 'chai';
 import { StatusCodes } from 'http-status-codes';
-import { browser } from 'protractor';
 const host = 'http://3.142.215.210:8080'    //AWS IP
 export function customerSetup() {
   // Para que funcione es necesario poner tu IP privada en el host, ademaś de activar el selenium grid
