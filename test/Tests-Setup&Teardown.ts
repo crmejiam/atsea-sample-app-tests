@@ -40,13 +40,12 @@ export function customerSetup() {
 export function customerTeardown() {
   let response;
   
-  describe('Tearing down the Customes', () => {
+  describe('Tearing down the Customers', () => {
     before(async () => {
       response = await del(`${host}/api/customer/`)
       .set('User-Agent', 'agent')
     });
     it('Then all customers sould be deleted', () => {
-      browser.sleep(500000);
       expect(response.status).to.equal(StatusCodes.NO_CONTENT);
     });
   });
