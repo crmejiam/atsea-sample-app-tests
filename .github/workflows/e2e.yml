@@ -64,5 +64,5 @@ jobs:
     - name: Running UI tests
       run: npm run test:ui
     - name: Upload reports to AWS bucket
-      run: aws s3 sync ./mochawesome-report ${{ secrets.AWS_BUCKET }}/ui-tests-report
+      run: aws s3 sync ./mochawesome-reports ${{ secrets.AWS_BUCKET }}/ui-tests-report
       if: ${{ always() }}
