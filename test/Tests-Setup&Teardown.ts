@@ -42,7 +42,7 @@ export function customerTeardown() {
   
   describe('Tearing down the Customes', () => {
     before(async () => {
-      response = await del(`${host}/customer/`)
+      response = await del(`${host}/api/customer/`)
       .set('User-Agent', 'agent')
     });
     it('Then all customers sould be deleted', () => {
