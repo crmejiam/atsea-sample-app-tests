@@ -130,4 +130,8 @@ dist
 mochawesome-report
 mochawesome-reports
 
+## Generated files ##
+awscliv2.zip
+aws
+
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
