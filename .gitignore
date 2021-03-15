@@ -126,6 +126,10 @@ dist
 .history
 .ionide
 
+## Reports ##
+mochawesome-report
+mochawesome-reports
+
 ## Generated files ##
 awscliv2.zip
 aws

@@ -78,7 +78,9 @@ export class PaymentStepPage {
   public async completeOrder(){
     browser.sleep(5000);
     await this.complete.click();
-    browser.sleep(5000);
+    browser.sleep(17000);
+    ExpectedConditions.presenceOf(this.message)
+    browser.sleep(17000);
     const msg = await this.message.getText();
     browser.sleep(5000);
     expect(msg).to.equal('You have successfully placed an order!');
