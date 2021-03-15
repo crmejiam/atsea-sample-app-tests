@@ -1,6 +1,9 @@
 import { browser, Config } from 'protractor';
 const firefoxConfig = {
-  browserName: 'firefox',  
+  browserName: 'firefox',
+  firefoxOptions: {
+    args: ['--window-size=1920,1080']
+  },  
   name: 'firefox-tests',
   shardTestFiles: true,
   maxInstances: 1
